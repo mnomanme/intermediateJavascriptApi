@@ -1,3 +1,4 @@
+// 23-3 Null Vs Undefined, different ways you will get undefined
 let pakhi;
 console.log(pakhi);
 
