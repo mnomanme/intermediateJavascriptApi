@@ -9,6 +9,7 @@ for (let i = 0; i < numbers.length; i++) {
 	// console.log('result:', result);
 	output.push(result);
 }
+
 console.log('result:', output);
 
 // square function
@@ -16,6 +17,7 @@ console.log('result:', output);
 function square(element) {
 	return element * element;
 }
+
 const numbersMap = numbers.map(square);
 console.log('Numbers Map :', numbersMap);
 
