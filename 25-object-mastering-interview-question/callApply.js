@@ -48,3 +48,9 @@ friendChargeBill(3000);
 friendChargeBill(6000);
 
 console.log('Friends Salary :', friendlyPerson.salary);
+
+// 25-4 difference between bind, call and apply
+
+normalPerson.chargedBill.call(heroPerson, 1000);
+
+console.log('Call Hero Person Salary :', heroPerson.salary);
