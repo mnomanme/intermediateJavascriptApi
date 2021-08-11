@@ -1,3 +1,4 @@
+// 25-7 how to understand the this keyword
 const items = {
 	burger: 'Rajukian Burger',
 	getFullBurger: function () {
