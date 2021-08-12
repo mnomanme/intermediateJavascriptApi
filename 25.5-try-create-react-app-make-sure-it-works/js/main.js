@@ -9,19 +9,14 @@ const displayCountries = (countries) => {
 	countries.map((country) => {
 		// console.log(country.name);
 		const countryDiv = document.createElement('div');
+		countryDiv.className = 'country';
 
-		const countryName = document.createElement('h5');
-		countryName.innerText = country.name;
-
-		const countryCapital = document.createElement('p');
-		countryCapital.innerText = country.capital;
-
-		countryDiv.appendChild(countryName);
-		countryDiv.appendChild(countryCapital);
+		const countryInfo = `
+        <h5 class='countryName'>${country.name}</h5>
+        <p class='countryCapital'>${country.capital}</p>
+        `;
+		countryDiv.innerHTML = countryInfo;
 
 		allCountries.appendChild(countryDiv);
-
-		// countryDiv.innerText = country.name;
-		// allCountries.appendChild(countryDiv);
 	});
 };
