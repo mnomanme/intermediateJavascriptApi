@@ -6,10 +6,12 @@ body {
 	font-family: 'Noto Sans JP', sans-serif;
 	font-size: 20px;
 }
+
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .show > .nav-link {
 	color: #11324d;
 }
+
 .navbar-light .navbar-brand {
 	color: #11324d;
 }
