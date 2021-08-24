@@ -30,17 +30,32 @@
 				</div>
 			</nav>
 		</header>
-		<main>
+		<main class="container">
 			<!-- search bar -->
-			<section class="container d-flex justify-content-center my-5">
+			<section class="d-flex justify-content-center my-5">
 				<div class="input-group w-50">
 					<input id="search" type="text" placeholder="Search for Meal..." class="form-control" />
 					<div class="input-group-append">
-						<button type="button" class="btn btn-success">Search</button>
+						<button onclick="searchBtn()" type="button" class="btn btn-success">Search</button>
 					</div>
 				</div>
 			</section>
-			<!--  -->
+			<!-- empty error -->
+			<section>
+				<div id="emptyError"></div>
+			</section>
+			<!-- search error -->
+			<section>
+				<div id="searchError"></div>
+			</section>
+			<!-- meal details -->
+			<section class="details">
+				<div id="mealDetails" class="align-items-center my-3 p-3 d-flex justify-content-center"></div>
+			</section>
+			<!-- meals -->
+			<section class="meals">
+				<div id="meals" class="row justify-content-center align-items-center my-3 p-3 d-flex"></div>
+			</section>
 		</main>
 
 		<!-- bootstrap js -->
@@ -48,4 +63,5 @@
 	</body>
 	<!-- js -->
 	<script src="./js/main.js"></script>
+	<!-- <script src="./js/duplicate.js"></script> -->
 </html>
