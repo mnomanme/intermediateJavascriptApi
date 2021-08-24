@@ -10,6 +10,7 @@ body {
 .navbar-brand {
 	font-size: 30px;
 	font-weight: bold;
+	color: #11324d;
 }
 
 .navbar-light .navbar-nav .nav-link.active,
@@ -19,4 +20,65 @@ body {
 
 .navbar-light .navbar-brand {
 	color: #11324d;
+}
+
+#meals {
+	margin-top: 50px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 25px;
+	justify-items: center;
+}
+
+.display-meal-box {
+	margin: 10px;
+	padding-bottom: 25px;
+	cursor: pointer;
+}
+.meal {
+	border-radius: 20px;
+	text-align: center;
+	width: 300px;
+}
+.meal img {
+	width: 300px;
+	border-radius: 10px;
+}
+
+.meal-ingredients-show img {
+	width: 500px;
+	height: 300px;
+	border-radius: 5px;
+}
+.ingredients {
+	padding: 50px;
+	background-color: white;
+	text-align: left;
+	border-radius: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+	#meals {
+		margin-top: 50px;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	#meals {
+		margin-top: 50px;
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.searchBox {
+		width: 200px;
+	}
+	.meal-ingredients-show {
+		width: 400px;
+	}
+	.meal-ingredients-show img {
+		width: 400px;
+		height: 250px;
+	}
 }
