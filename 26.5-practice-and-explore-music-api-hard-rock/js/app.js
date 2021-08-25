@@ -5,10 +5,14 @@ const searchSongs = async () => {
 	const url = ` https://api.lyrics.ovh/suggest/${searchText}`;
 	console.log(url);
 
-	// load data
-	const res = await fetch(url);
-	const data = await res.json();
-	displaySongs(data.data);
+	try {
+		// load data
+		const res = await fetch(url);
+		const data = await res.json();
+		displaySongs(data.data);
+	} catch (error) {
+		displayError('404! NOT FOUND! Please Try Again Later...');
+	}
 };
 
 // display songs
@@ -42,14 +46,23 @@ const getLyrics = async (artist, title) => {
 	const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
 	console.log(url);
 
-	const res = await fetch(url);
-	const data = await res.json();
-	displayLyrics(data.lyrics);
+	try {
+		const res = await fetch(url);
+		const data = await res.json();
+		displayLyrics(data.lyrics);
+	} catch {
+		displayError('404! NOT FOUND! Please Try Again Later...');
+	}
 };
 
 // display lyrics
-
 const displayLyrics = (lyrics) => {
 	const lyricsDiv = document.getElementById('songLyrics');
 	lyricsDiv.innerText = lyrics;
+};
+
+// display error message
+const displayError = (error) => {
+	const errorMessage = document.getElementById('errorMessage');
+	errorMessage.innerText = error;
 };

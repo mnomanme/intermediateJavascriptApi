@@ -6,7 +6,8 @@ const searchSongs = () => {
 	console.log(url);
 	fetch(url)
 		.then((res) => res.json())
-		.then((data) => displaySongs(data.data));
+		.then((data) => displaySongs(data.data))
+		.catch((error) => displayError('404! NOT FOUND! Please Try Again Later...'));
 };
 
 // display songs
@@ -50,4 +51,10 @@ const getLyrics = (artist, title) => {
 const displayLyrics = (lyrics) => {
 	const lyricsDiv = document.getElementById('songLyrics');
 	lyricsDiv.innerText = lyrics;
+};
+
+// display error message
+const displayError = (error) => {
+	const errorMessage = document.getElementById('errorMessage');
+	errorMessage.innerText = error;
 };
