@@ -1,20 +1,23 @@
 // get data
-const searchSongs = () => {
+const searchSongs = async () => {
 	const searchText = document.getElementById('searchField').value;
 	console.log(searchText);
 	const url = ` https://api.lyrics.ovh/suggest/${searchText}`;
-	// console.log(url);
-	fetch(url)
-		.then((res) => res.json())
-		.then((data) => displaySongs(data.data));
+	console.log(url);
+
+	// load data
+	const res = await fetch(url);
+	const data = await res.json();
+	displaySongs(data.data);
 };
 
 // display songs
 const displaySongs = (songs) => {
 	console.log(songs);
 	const songContainer = document.getElementById('songContainer');
+	songContainer.innerHTML = '';
 	songs.map((song) => {
-		// console.log(song.title);
+		console.log(song.title);
 		const songDiv = document.createElement('li');
 		songDiv.className = 'single-result row align-items-center my-3 p-3';
 		songDiv.innerHTML = `
@@ -33,7 +36,20 @@ const displaySongs = (songs) => {
 	});
 };
 
-// display lyrcis
-const getLyrics = (artist, title) => {
+// get lyrcis
+const getLyrics = async (artist, title) => {
 	console.log(artist, title);
+	const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
+	console.log(url);
+
+	const res = await fetch(url);
+	const data = await res.json();
+	displayLyrics(data.lyrics);
+};
+
+// display lyrics
+
+const displayLyrics = (lyrics) => {
+	const lyricsDiv = document.getElementById('songLyrics');
+	lyricsDiv.innerText = lyrics;
 };
