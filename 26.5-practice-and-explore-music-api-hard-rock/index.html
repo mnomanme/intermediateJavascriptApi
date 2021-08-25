@@ -43,44 +43,18 @@
 					</ul>
 				</div>
 			</nav>
-
 			<main class="content-area">
 				<div class="search-bar col-md-6 mx-auto">
-					<h1 class="text-center">Lyrics Search</h1>
+					<h1 class="text-center">Hard Rock Lyric Search</h1>
 					<div class="search-box my-5">
-						<input id="searchField" type="text" id="searchInput" class="form-control" placeholder="Enter your artist song name" />
-						<button onclick="searchSongs()" id="songSearch" class="btn btn-success search-btn">Search</button>
+						<input id="searchField" type="text" class="form-control" placeholder="Enter your artist song name" />
+						<button onclick="searchSongs()" class="btn btn-success search-btn">Search</button>
 					</div>
 				</div>
-				<!-- === Simple results === -->
-				<div class="single-lyrics text-center"></div>
-				<div class="search-result col-md-8 mx-auto py-4">
-					<div class="single-result row align-items-center my-3 p-3">
-						<div class="col-md-9">
-							<h3 class="lyrics-name">Purple Noon</h3>
-							<p class="author lead">Album by <span>Washed Out</span></p>
-						</div>
-						<div class="col-md-3 text-md-right text-center">
-							<button class="btn btn-success">Get Lyrics</button>
-						</div>
-					</div>
-				</div>
-				<!-- === Fancy results === -->
-				<div class="search-result col-md-8 mx-auto py-4" id="parent">
-					<!-- single result -->
-					<div class="" id="parent"></div>
-					<!-- ./ single result -->
-				</div>
-
 				<!-- Single Lyrics -->
-				<div class="single-lyrics text-center">
-					<button class="btn go-back">&lsaquo;</button>
-					<h2 class="text-success mb-4" id="songTitle"></h2>
-					<pre class="lyric text-white" id="displayLyrics">
-                    <!-- i have cleared every thing 
-                    it will show the results using the javascript dom -->
-                </pre>
-				</div>
+				<div id="songLyrics" class="single-lyrics text-center"></div>
+
+				<div id="songContainer" class="search-result col-md-8 mx-auto py-4"></div>
 			</main>
 		</div>
 
