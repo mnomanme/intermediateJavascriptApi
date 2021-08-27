@@ -15,6 +15,17 @@ const searchSongs = async () => {
 	}
 };
 
+// keyboard enter
+let searchBtn = document.getElementById('searchBtn');
+let searchField = document.getElementById('searchField');
+
+searchField.addEventListener('keypress', function (event) {
+	console.log('keyb', event.key);
+	if (event.key === 'Enter') {
+		searchBtn.click();
+	}
+});
+
 // display songs
 const displaySongs = (songs) => {
 	console.log(songs);
