@@ -7,6 +7,7 @@ const url = `https://www.themealdb.com/api/json/v1/1`;
 
 //  Get Meal Data from MealDB
 const meals = (name) => {
+	toggleSpinner(true);
 	fetch(`${url}/search.php?s=${name}`)
 		.then((res) => res.json())
 		.then((data) => displayMeals(data))
@@ -45,6 +46,7 @@ const displayMeals = (mealsData) => {
 
 //  Get Ingredient Data
 const displayMealIngredients = (name) => {
+	toggleSpinner(false);
 	fetch(`${url}/search.php?s=${name}`)
 		.then((res) => res.json())
 		.then((data) => {
@@ -90,4 +92,15 @@ const errorHandler = () => {
 	errorSearch.innerHTML = `
     <p class="error-massage">404! Not Found! <br> Sorry, We Cannot Find Your Meal. <br> 
     Please try again.<p>`;
+};
+
+// display spinner
+const toggleSpinner = (show) => {
+	const spinner = document.getElementById('loadingSpinner');
+	// console.log(spinner.classList);
+	if (show) {
+		spinner.classList.remove('d-none');
+	} else {
+		spinner.classList.add('d-block');
+	}
 };
