@@ -58,3 +58,14 @@ const displayError = (error) => {
 	const errorMessage = document.getElementById('errorMessage');
 	errorMessage.innerText = error;
 };
+
+// display spinner
+const toggleSpinner = (show) => {
+	const spinner = document.getElementById('loadingSpinner');
+	// console.log(spinner.classList);
+	if (show) {
+		spinner.classList.remove('d-none');
+	} else {
+		spinner.classList.add('d-block');
+	}
+};
