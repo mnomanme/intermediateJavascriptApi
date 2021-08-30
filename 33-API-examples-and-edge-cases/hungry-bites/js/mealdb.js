@@ -11,6 +11,7 @@ const url = `https://www.themealdb.com/api/json/v1/1`;
 
 // get data from mealdb
 const getFood = async (foodName) => {
+	toggleSpinner(true);
 	// const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`;
 	// console.log(url);
 	searchError.textContent = '';
@@ -28,7 +29,6 @@ const searchFood = () => {
 	emptyError.textContent = '';
 	errorMessage.style.display = 'none';
 	// console.log(searchText);
-
 	if (searchText === '') {
 		emptyErrorHandle();
 	} else {
@@ -38,8 +38,8 @@ const searchFood = () => {
 };
 
 // search food hit enter
-searchField.addEventListener('keypress', (event) => {
-	console.log('keyb', event.key);
+searchField.addEventListener('keypress', function (event) {
+	// console.log('keyb', event.key);
 	if (event.key === 'Enter') {
 		buttonSearch.click();
 	}
@@ -49,10 +49,10 @@ searchField.addEventListener('keypress', (event) => {
 // display search result
 const displaySearchResult = (meals) => {
 	// console.log(meals);
-
+	toggleSpinner(false);
 	searchResult.innerHTML = '';
 	meals.map((getMeal) => {
-		console.log(getMeal);
+		// console.log(getMeal);
 		const { idMeal, strMeal, strMealThumb, strInstructions } = getMeal;
 		const divCol = document.createElement('div');
 		divCol.classList.add('col');
@@ -65,6 +65,7 @@ const displaySearchResult = (meals) => {
 				<p class="card-text">${strInstructions.slice(0, 300)}</p>
 			</div>
 		</div>
+
 		`;
 		searchResult.appendChild(divCol);
 	});
@@ -73,7 +74,8 @@ const displaySearchResult = (meals) => {
 // 33-7 Create dynamic url based on click and display data
 // show meal details
 const showMealDetails = (mealId) => {
-	console.log(mealId);
+	toggleSpinner(true);
+	// console.log(mealId);
 	const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
 	console.log(url);
 	fetch(url)
@@ -84,7 +86,8 @@ const showMealDetails = (mealId) => {
 
 // display meal details
 const displayMealDetails = (showMeal) => {
-	console.log(showMeal);
+	toggleSpinner(false);
+	// console.log(showMeal);
 	mealDetails.textContent = '';
 	const mealDiv = document.createElement('div');
 	mealDiv.classList.add('card');
@@ -114,6 +117,7 @@ const displayMealDetails = (showMeal) => {
 const displayIngredientsList = (list) => {
 	let ingredients = '';
 	for (let i = 1; i <= 15; i++) {
+		// list string index ['strIngredient' + i]
 		ingredients += list['strIngredient' + i] != '' || null ? `<li>${list['strIngredient' + i]}</li>` : '';
 	}
 	return ingredients;
@@ -135,7 +139,16 @@ const emptyErrorHandle = () => {
 //  Not found search error massage
 const notFoundHandler = () => {
 	searchError.innerHTML = `
-    	<p class="text-danger text-center">404! Not Found! Sorry, We Cannot Find Your Meal.  
-    	Please try again.<p>
-		`;
+    	<p class="text-danger text-center">404! Not Found! Sorry, We Cannot Find Your Meal. Please try again.<p>`;
+};
+
+// display spinner
+const toggleSpinner = (show) => {
+	const spinner = document.getElementById('loadingSpinner');
+	// console.log(spinner.classList);
+	if (show) {
+		spinner.classList.remove('d-none');
+	} else {
+		spinner.classList.add('d-none');
+	}
 };
