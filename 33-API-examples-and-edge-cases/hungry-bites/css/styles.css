@@ -6,3 +6,18 @@ body {
 	font-family: 'Noto Sans JP', sans-serif;
 	text-align: justify;
 }
+h3,
+h5 {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.card:hover {
+	cursor: pointer;
+	background-color: tan;
+	border-radius: 20px;
+}
+
+.card-img-top:hover {
+	border-radius: 20px;
+}
