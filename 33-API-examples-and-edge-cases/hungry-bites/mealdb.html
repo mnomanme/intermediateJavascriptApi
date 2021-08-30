@@ -31,30 +31,12 @@
 			</nav>
 		</header>
 		<main class="container">
-			<!-- search bar -->
-			<section class="d-flex justify-content-center my-5">
-				<div class="input-group w-50">
-					<input id="search" type="text" placeholder="Search for Meal..." class="form-control" />
-					<div class="input-group-append">
-						<button onclick="searchBtn()" type="button" class="btn btn-success">Search</button>
-					</div>
+			<h2 class="text-center">Search Your Favourite Food</h2>
+			<section>
+				<div class="input-group mb-3 w-50 mx-auto">
+					<input id="searchField" type="text" class="form-control" placeholder="search the food you want" />
+					<button onclick="searchFood()" id="buttonSearch" class="btn btn-outline-success" type="button" id="button-addon2">Search</button>
 				</div>
-			</section>
-			<!-- empty error -->
-			<section>
-				<div id="emptyError"></div>
-			</section>
-			<!-- search error -->
-			<section>
-				<div id="searchError"></div>
-			</section>
-			<!-- meal details -->
-			<section class="details">
-				<div id="mealDetails" class="align-items-center my-3 p-3 d-flex justify-content-center"></div>
-			</section>
-			<!-- meals -->
-			<section class="meals">
-				<div id="meals" class="row justify-content-center align-items-center my-3 p-3 d-flex"></div>
 			</section>
 		</main>
 
