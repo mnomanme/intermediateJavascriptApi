@@ -32,6 +32,9 @@
 		</header>
 		<main class="container">
 			<h2 class="text-center">Search Your Favourite Food</h2>
+			<section>
+				<p id="errorMessage" class="text-danger text-center">Something Went wrong. Please Try Again Later!</p>
+			</section>
 			<!-- single meal details -->
 			<section>
 				<div id="mealDetails" class="w-50 mx-auto"></div>
@@ -43,7 +46,6 @@
 					<button onclick="searchFood()" id="buttonSearch" class="btn btn-outline-success" type="button" id="button-addon2">Search</button>
 				</div>
 			</section>
-
 			<!-- meal search result -->
 			<section>
 				<div id="searchResult" class="row row-cols-1 row-cols-md-3 g-4 my-5"></div>
@@ -55,5 +57,6 @@
 
 		<!-- main js -->
 		<script src="js/mealdb.js"></script>
+		<!-- <script src="./js/mealdbAsync.js"></script> -->
 	</body>
 </html>
