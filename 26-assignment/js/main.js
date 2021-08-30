@@ -29,6 +29,8 @@ const displayMeals = (mealsData) => {
 	errorEmpty.innerHTML = '';
 
 	mealsData.meals.map((meal) => {
+		toggleSpinner(false);
+
 		const { strMeal, strMealThumb } = meal;
 		const mealDiv = document.createElement('div');
 		mealDiv.className = 'meal';
@@ -46,7 +48,6 @@ const displayMeals = (mealsData) => {
 
 //  Get Ingredient Data
 const displayMealIngredients = (name) => {
-	toggleSpinner(false);
 	fetch(`${url}/search.php?s=${name}`)
 		.then((res) => res.json())
 		.then((data) => {
