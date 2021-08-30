@@ -3,6 +3,7 @@ const errorEmpty = document.getElementById('emptyError');
 const errorSearch = document.getElementById('searchError');
 const allMeals = document.getElementById('meals');
 const mealDetails = document.getElementById('mealDetails');
+const buttonSearch = document.getElementById('buttonSearch');
 const url = `https://www.themealdb.com/api/json/v1/1`;
 
 //  Get Meal Data from MealDB
@@ -21,16 +22,22 @@ const searchBtn = () => {
 	search.value = '';
 };
 
+// search keyboard enter hit
+search.addEventListener('keypress', function (event) {
+	// console.log('keyb', event.key);
+	if (event.key === 'Enter') {
+		buttonSearch.click();
+	}
+});
+
 //  Displaying Meals by matching name
-const displayMeals = (mealsData) => {
+const displayMeals = async (mealsData) => {
 	errorSearch.innerHTML = '';
 	allMeals.innerHTML = '';
 	mealDetails.innerHTML = '';
 	errorEmpty.innerHTML = '';
-
+	await toggleSpinner(false);
 	mealsData.meals.map((meal) => {
-		toggleSpinner(false);
-
 		const { strMeal, strMealThumb } = meal;
 		const mealDiv = document.createElement('div');
 		mealDiv.className = 'meal';
@@ -48,6 +55,7 @@ const displayMeals = (mealsData) => {
 
 //  Get Ingredient Data
 const displayMealIngredients = (name) => {
+	toggleSpinner(true);
 	fetch(`${url}/search.php?s=${name}`)
 		.then((res) => res.json())
 		.then((data) => {
@@ -57,6 +65,7 @@ const displayMealIngredients = (name) => {
 
 //  Showing Meal Details
 const getMealIngredients = (meal) => {
+	toggleSpinner(false);
 	const { strMeal, strMealThumb } = meal;
 	mealDetails.innerHTML = `
         <div class="meal-ingredients-show">
@@ -86,12 +95,12 @@ const displayIngredientsList = (list) => {
 const emptyError = () => {
 	errorSearch.innerHTML = '';
 	errorEmpty.innerHTML = `
-      <p>Warning! Search field is empty! Type something...</p>`;
+      <p class="text-center text-danger">Warning! Search field is empty! Type something...</p>`;
 };
 //  Not found search error massage
 const errorHandler = () => {
 	errorSearch.innerHTML = `
-    <p class="error-massage">404! Not Found! <br> Sorry, We Cannot Find Your Meal. <br> 
+    <p class="text-center text-danger">404! Not Found! <br> Sorry, We Cannot Find Your Meal. <br> 
     Please try again.<p>`;
 };
 
@@ -102,6 +111,6 @@ const toggleSpinner = (show) => {
 	if (show) {
 		spinner.classList.remove('d-none');
 	} else {
-		spinner.classList.add('d-block');
+		spinner.classList.add('d-none');
 	}
 };
