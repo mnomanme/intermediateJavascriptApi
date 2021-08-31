@@ -11,35 +11,52 @@ const errorMessage = document.getElementById('errorMessage');
 // loading spinner
 const toggleSpinner = (show) => {
 	const spinner = loadingSpinner;
-	if (show) {
-		spinner.classList.remove('d-none');
-	} else {
-		spinner.classList.add('d-none');
-	}
+	// console.log(spinner);
+
+	show ? spinner.classList.remove('d-none') : spinner.classList.add('d-none');
 };
 
 // get data to sports db
-const getTeam = (teamName) => {
+const getTeam = async (teamName) => {
+	// console.log(teamName);
 	toggleSpinner(true);
 	errorMessage.style.display = 'none';
+
 	const url2 = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${teamName}`;
-	fetch(url2)
-		.then((res) => res.json())
-		.then((data) => displaySearchResult(data.teams))
-		.catch((error) => console.log(error));
+
+	try {
+		const res = await fetch(url2);
+		const data = await res.json();
+		// console.log(data.teams);
+
+		if (data.teams !== null) {
+			displaySearchResult(data.teams);
+		} else {
+			teamDetails.textContent = '';
+			searchResult.textContent = '';
+			toggleSpinner(false);
+			notFoundHandler();
+		}
+	} catch (error) {
+		// console.log(error);
+	}
 };
-getTeam();
 
 // search team hit button
 const searchTeam = () => {
 	const searchText = searchField.value;
-	searchField.value = '';
+
+	errorMessage.style.display = 'none';
 	emptyError.textContent = '';
 	searchError.textContent = '';
-	errorMessage.style.display = 'none';
+	searchResult.textContent = '';
+	teamDetails.textContent = '';
+	searchField.value = '';
+
 	if (searchText === '') {
 		emptyErrorHandle();
 	} else {
+		// console.log('get team called', searchText);
 		getTeam(searchText);
 	}
 };
@@ -55,10 +72,12 @@ searchField.addEventListener('keypress', (event) => {
 
 // display search result
 const displaySearchResult = (sportTeams) => {
+	// console.log(sportTeams);
 	toggleSpinner(false);
-	searchResult.textContent = '';
-	teamDetails.textContent = '';
+
 	errorMessage.style.display = 'none';
+	searchResult.textContent = '';
+
 	sportTeams.map((team) => {
 		// console.log(team);
 		const { strTeam, strTeamBadge, strDescriptionEN, idLeague } = team;
@@ -75,36 +94,46 @@ const displaySearchResult = (sportTeams) => {
 		</div>
 
 		`;
+
 		searchResult.appendChild(teamDiv);
 	});
 };
 
 // display error if anything wrong or not working
-
+errorMessage.style.display = 'none';
 const displayError = () => {
 	errorMessage.style.display = 'block';
 };
 
 // load team details
-const getTeamDetails = (teamId) => {
+const getTeamDetails = async (teamId) => {
+	// console.log(teamId);
 	toggleSpinner(true);
+
 	errorMessage.style.display = 'none';
+	searchError.textContent = '';
+
 	const url = `https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=${teamId}`;
-	console.log(url);
-	fetch(url)
-		.then((res) => res.json())
-		.then((data) => displayTeamDetails(data.leagues[0]))
-		.catch((error) => displayError(error));
+	try {
+		const res = await fetch(url);
+		const data = await res.json();
+		displayTeamDetails(data.leagues[0]);
+	} catch (error) {
+		displayError(error);
+	}
 };
 
 // display team details
 const displayTeamDetails = (displayTeam) => {
+	// console.log(displayTeam);
 	toggleSpinner(false);
+
 	errorMessage.style.display = 'none';
-	console.log(displayTeam);
 	teamDetails.textContent = '';
+
 	const { strLeague, strBadge, strDescriptionEN, strWebsite } = displayTeam;
-	console.log('league', strLeague);
+	// console.log('league', strLeague);
+
 	const sportDiv = document.createElement('div');
 	sportDiv.classList.add('card');
 	sportDiv.innerHTML = `
@@ -121,8 +150,10 @@ const displayTeamDetails = (displayTeam) => {
 	  </div>
 
 		`;
+
 	teamDetails.appendChild(sportDiv);
 };
+
 //  Empty search error handle
 const emptyErrorHandle = () => {
 	searchError.textContent = '';
@@ -131,3 +162,7 @@ const emptyErrorHandle = () => {
 };
 
 // 404 NOT found error
+const notFoundHandler = () => {
+	searchError.innerHTML = `
+	<p class="text-danger text-center">404! Not Found! Sorry, We Cannot Find Your Team. Please try again.<p>`;
+};
