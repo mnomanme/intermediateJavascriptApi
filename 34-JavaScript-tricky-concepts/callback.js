@@ -30,6 +30,7 @@ welcomeMessage('Mohammad Faruque', greetAfternoon);
 welcomeMessage('Mohammad Baki', greetNight);
 
 // callback
+/*
 
 const handleOnClick = () => {
 	console.log('button click me');
@@ -40,3 +41,5 @@ document.getElementById('Btn').addEventListener('click', handleOnClick);
 document.getElementById('myBtn').addEventListener('click', () => {
 	console.log('button is working');
 });
+
+*/
