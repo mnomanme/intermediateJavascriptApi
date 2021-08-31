@@ -94,7 +94,7 @@ const displayMealDetails = (showMeal) => {
 	const { idMeal, strYoutube, strMeal, strMealThumb, strInstructions } = showMeal;
 	mealDiv.innerHTML = `
 
-		<div id="mealDetails">
+		<div>
 			<div class="card" >
 				<img src="${strMealThumb}" class="card-img-top" alt="..." />
 				<div class="card-body">
