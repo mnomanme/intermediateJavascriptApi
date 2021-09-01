@@ -36,7 +36,7 @@ const heroMaleTreatDay = student.treatDay.bind(heroMale);
 
 heroMaleTreatDay(5000);
 
-// // call
+// call
 student.treatDay.call(heroMale, 500, 50, 15);
 student.treatDay.call(heroMale, 800, 80, 24);
 
