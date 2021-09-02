@@ -4,16 +4,24 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>Book Store</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
 	</head>
 	<body>
-		<!-- meal search area -->
+		<!-- book search area -->
 		<main class="container">
 			<section>
 				<div class="input-group mb-3 w-50 mx-auto my-3">
-					<input id="searchField" type="text" class="form-control" placeholder="search the food you want" />
+					<input id="searchField" type="text" class="form-control" placeholder="search the book you want" />
 					<button onclick="searchBook()" id="buttonSearch" class="btn btn-outline-success" type="button" id="button-addon2">Search</button>
+				</div>
+			</section>
+			<!-- spinner -->
+			<section>
+				<div id="loadingSpinner" class="d-flex justify-content-center d-none">
+					<div class="spinner-border text-warning" role="status">
+						<span class="visually-hidden"></span>
+					</div>
 				</div>
 			</section>
 			<!-- Total Number of Books -->
